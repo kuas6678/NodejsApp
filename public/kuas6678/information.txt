@@ -1,0 +1,30 @@
+﻿[
+  {
+    "title": "姓名",
+    "author": "莊英澔",
+    "category": " 莊英澔",
+    "pubdate": "10/2015",
+    "id": "W101"
+  },
+  {
+    "title": "實驗室",
+    "author": "陳會安",
+    "category": " BMWLab407 多媒體通訊應用與安全特色實驗室",
+    "pubdate": "07/2010",
+    "id": "W102"
+  },
+  {
+    "title": "研究領域",
+    "author": "莊英澔",
+    "category": " Web Programming、Sensor Network、SQL Database",
+    "pubdate": "11/2010",
+    "id": "P102"
+  },
+  {
+    "title": "學歷",
+    "author": "陳會安",
+    "category": " 國立高雄應用科技大學電機工程系(資通組)",
+    "pubdate": "07/2010",
+    "id": "M102"
+  }
+]

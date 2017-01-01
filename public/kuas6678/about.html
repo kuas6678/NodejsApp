@@ -1,0 +1,426 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>about</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="css/import.css" rel="stylesheet" />
+    <script src="js/gnav.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <link href="octicons/octicons.css" rel="stylesheet" />
+    <script src="Custom.js"></script>
+    <style type="text/css">
+        .auto-style1 {
+            line-height: 150%;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+
+        .auto-style2 {
+            font-weight: normal;
+            font-family: Arial;
+            font-size: small;
+        }
+
+        .bgcolor {
+            background-color: #AFEEEE;
+        }
+
+        .QQ {
+            color: green;
+        }
+
+        .QQ2 {
+            color: blue;
+        }
+
+        .line {
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .selected {
+            font-weight: bold;
+            background-color: #AAAAAA;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .focus {
+            border: 1px solid #00FFFF;
+        }
+
+        .border-radius {
+            border-radius: 5px;
+        }
+
+        .tr {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        //jQuery Event Handlers
+        $(document).ready(function () {
+            $('input').addClass('line');
+            $('#BMWLAB h5').addClass('hidden');
+            $('#switcher').click(function () {
+                if ($(event.target).is('input')) {
+                    var className = event.target.id; //若為input元素，則取得樣式類別名稱
+                    $('#switcher input').removeClass('selected');
+                    $(event.target).addClass('selected');
+                    event.stopPropagation(); //停止將事件傳遞至DOM樹上一層元素，避免重複處理
+                }
+            });
+            // mouseenter & mouseleave
+            jQuery('input').mouseenter(function () {
+                $(this).addClass('bgcolor');
+            }).mouseleave(function () {
+                $(this).removeClass('bgcolor');
+            });
+
+            var isHidden = true;
+            $('#KUAS').click(function () {
+                if (isHidden) {
+                    $('#BMWLAB h5').removeClass('hidden');
+                    $('#BMWLAB h5').append('<h5 id="line" class="QQ2">—————————————————————————————————————————————</h5>');
+                    isHidden = false;
+                }
+                else {
+                    $("h5 #line").remove('.QQ2');
+                    $('#BMWLAB h5').addClass('hidden');
+                    isHidden = true;
+                }
+            });
+            // slide effects
+            $('#Slide').click(function () {
+                if ($('.KK').is(':hidden'))
+                    $('.KK').slideDown('200');
+                else
+                    $('.KK').slideUp('200');
+                return false;
+            });
+            // fadeIn & fadeOut effects
+            $('p.more').hide();
+            $('a.short').hide();
+            $('a.more').click(function () {
+                $('p.more').fadeIn('1500');
+                $(this).hide();
+                $('a.short').show();
+                return false;
+            });
+            $('#fadeInOut').click(function () {
+                $('p.more').fadeToggle('1500');
+                return false;
+            });
+            //change transparent
+            $("address").mouseenter(function () {
+                $(this).fadeTo("slow", Math.random());
+            }).mouseleave(function () {
+                $(this).fadeTo("slow", 1);
+            });
+            // focus & blur
+            $('#search').focus(function () {
+                $(this).addClass('focus');
+            }).blur(function () {
+                $(this).removeClass('focus');
+            });
+
+            $('#Default').bind('click', function () {
+                // Same as $('#Default').click(function(){ });
+                $('body').toggleClass('bgcolor');
+            });
+            $('#PP').click(function () {
+                $('#QQ').toggleClass('QQ');
+            });
+            $('#PP2').click(function () {
+                $('#QQ').toggleClass('QQ2');
+            });
+            $("#LJ").click(function () {
+                $('#QQ').hide("fast");
+            });
+            $("#Wiki").click(function () {
+                $('#QQ').show("normal").removeClass('QQ QQ2');
+            });
+            $('#span_date').click(function () {
+                var now = new Date();
+                var str_NowDate = (now.getFullYear()) + "/" + (now.getMonth() + 1) + "/" + now.getDate();
+                $("#span_date").html(str_NowDate);
+            });
+
+        });
+        //W3Schools timing_clock example
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = "&nbsp;&nbsp;&nbsp;現在時間:&nbsp;" +
+            h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+</head>
+<body onload="startTime()">
+    <div id="container">
+        <div id="header">
+            <div id="header-inner">
+                <h1 id="siteid">
+                    <a href="./home.html" name="pagetop" id="pagetop">
+                        <img src="images/cloud.jpg" alt="Ying Hao Chuang" width="780" height="108" />
+                    </a>
+                </h1>
+                <ul id="global-nav">
+                    <li>
+                        <a href="./home.html">
+                            <img src="images/gnav_home.gif" alt="Home" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./products.html">
+                            <img src="images/gnav_products.gif" alt="Products" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./gallery.html">
+                            <img src="images/gnav_gallery.gif" alt="Gallery" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">
+                            <img src="images/gnav_contact.gif" alt="Contact" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./about.html">
+                            <img src="images/gnav_about.gif" alt="About" width="148" height="42" />
+                        </a>
+                    </li>
+                </ul>
+                <!--/#header-inner-->
+            </div>
+            <!--/#header-->
+        </div>
+
+        <div id="content">
+            <div id="alpha">
+                <table style="border:5px #cccccc solid; width: 300pt; font-size: 13px;" rules="all" cellpadding='5'>
+                    <tr>
+                        <td style="background-color: #AFEEEE; text-align: center; font-weight: bold; font-size: 14px;" colspan="4">個人簡歷</td>
+                    </tr>
+                    <tr>
+                        <td class="tr">姓名</td>
+                        <td>莊英澔</td>
+                        <td class="tr">性別</td>
+                        <td>男</td>
+                    </tr>
+                    <tr>
+                        <td class="tr">生日</td>
+                        <td>民國83年04月15日</td>
+                        <td class="tr">籍貫</td>
+                        <td>桃園平鎮</td>
+                    </tr>
+                    <tr>
+                        <td class="tr">信箱</td>
+                        <td colspan="3">kuas6678@gmail.com</td>
+                    </tr>
+                    <tr>
+                        <td class="tr">專長</td>
+                        <td colspan="3">網頁系統、視窗應用程式設計、資料庫建置、感測器應用</td>
+                    </tr>
+                    <tr>
+                        <td class="tr" rowspan="4"><br />學歷</td>
+                        <td colspan="3">國立高雄應用科技大學 電機工程系</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">國立龍潭高級農工職業學校 電機科</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">桃園市立平鎮國民中學</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">桃園市平鎮區北勢國民小學</td>
+                    </tr>
+                </table>
+                <table style="border:5px #cccccc solid; width: 300pt;  font-size: 13px;" rules="all" cellpadding='5' ;>
+                    <tr>
+                        <td style="background-color: #AFEEEE; text-align: center; font-weight: bold; font-size: 14px;" colspan="3">參與計畫與競賽</td>
+                    </tr>
+                    <tr>
+                        <td>專題展</td>
+                        <td>以藍牙定位實現具即時跌倒通報之銀髮族照護系統</td>
+                        <td>2015/09/26</td>
+                    </tr>
+                    <tr>
+                        <td>科技部104年度大專學生研究計畫</td>
+                        <td>以hBeacon為基礎的銀髮族照護系統之研製 - 老人跌倒通報為例</td>
+                        <td>
+                            2015/07/01~<br />2016/02/28
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2015年聯發科技物聯網/穿戴式創客競賽</td>
+                        <td>以藍牙定位實現具即時跌倒通報之銀髮族照護系統</td>
+                        <td>2015/07/21</td>
+                    </tr>
+                </table>
+                <!--/#alpha-->
+            </div>
+
+            <div id="beta">
+                <div class="widget" id="recent-entries">
+                    <br />
+                    <div>
+                        <span id="Slide" class="octicon octicon-git-compare"><b>&nbsp;Related Link</b></span>
+                    </div>
+                    <br />
+                    <ul class="KK">
+                        <li>
+                            <a href="http://www.kuas.edu.tw/bin/home.php">
+                                <img src="images/KUAS彩色.bmp" alt="" width="60" height="60" />
+                                National Kaohsiung University of Applied Sciences <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://github.com/kuas6678">
+                                <img src="images/entrypct_05.png" alt="" width="60" height="60" />
+                                Explore GitHub <span class="published">06 Aug 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://203.64.102.131/bmwlab">
+                                <img src="images/entrypct_04.png" alt="" width="60" height="60" />
+                                Senior Care System <span class="published">10 Oct 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100000654225811">
+                                <img src="images/entrypct_03.png" alt="" width="60" height="60" />
+                                Facebook <span class="published">14 Jul 2009</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.w3schools.com/">
+                                <img src="images/entrypct_02.jpg" alt="" width="60" height="60" />
+                                W3Schools Online <span class="published">07 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://msdn.microsoft.com/zh-tw/vstudio/aa718325.aspx">
+                                <img src="images/entrypct_01.png" alt="" width="60" height="60" />
+                                Visual Studio Msdn <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://social.msdn.microsoft.com/Forums/zh-TW/home">
+                                <img src="images/msdn_logo.png" alt="" width="60" height="60" />
+                                Social Msdn <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://ieeexplore.ieee.org/Xplore/home.jsp">
+                                <img src="images/Ieee-emblem.jpg" alt="" width="50" height="60" />
+                                IEEE Xplore Digital Library <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://nodejs.org/en/">
+                                <img src="images/node.png" alt="" width="60" height="60" />
+                                Node.js <span class="published">06 Oct 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.sharecourse.net/sharecourse/general/home/">
+                                <img src="images/mq1.png" alt="" width="60" height="60" />
+                                ShareCourse <span class="published">06 Oct 2015</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/#beta-->
+            </div>
+
+            <div id="gamma">
+                <div class="widget" id="calendar">
+                    <img src="images/Hao.jpg" alt="Smiley face" height="150" width="160">
+                    <p style="text-align: center;" class="more">莊英澔</p>
+                    <div id="fadeInOut" align="center"><b>Ying Hao Chuang</b></div>
+                    <div id="BMWLAB">
+                        <br />
+                        <h5><a href="./kuaslocation.html" target="_blank">School: KUAS</a></h5>
+                        <h5>Email: kuas6678@gmail.com</h5>
+                        <h5>
+                            Skill: <br />
+                            <p style="text-align: center;">C、C++、C#、Java、HTML5、ASP.NET、MS SQL、JavaScript、CSS、Bootstrap、JSON、Ajax、jQuery、GitHub、Arduino</p>
+                        </h5>
+                    </div>
+                    <h3><span id="span_date">Oct 2015</span>&nbsp;&nbsp;&nbsp;<span id="KUAS" class="mega-octicon octicon-home"></span></h3>
+                    <div style=" font-size: 14px;  font-weight: bold;" id="txt"></div>
+                    <ul>
+                        <li><a href="#">01</a></li>
+                        <li>02</li>
+                        <li>03</li>
+                        <li>04</li>
+                        <li class="sun"><a href="#">05</a></li>
+                        <li>06</li>
+                        <li><a href="#">07</a></li>
+                        <li>08</li>
+                        <li>09</li>
+                        <li>10</li>
+                        <li>11</li>
+                        <li class="sun">12</li>
+                        <li>13</li>
+                        <li><a href="#">14</a></li>
+                        <li>15</li>
+                        <li>16</li>
+                        <li><a href="#">17</a></li>
+                        <li>18</li>
+                        <li class="sun">19</li>
+                        <li class="sun">20</li>
+                        <li>21</li>
+                        <li><a href="#">22</a></li>
+                        <li>23</li>
+                        <li>24</li>
+                        <li>25</li>
+                        <li class="sun">26</li>
+                        <li>27</li>
+                        <li>28</li>
+                        <li>29</li>
+                        <li>30</li>
+                        <li>31</li>
+                    </ul>
+                    <br />
+                    <form method="get" action="http://www.google.com.tw/custom" target="_blank">
+                        <span class="octicon octicon-search">站內搜尋:</span><br />
+                        <input id="search" style="width: 94px; height: 18px;" placeholder="請輸入關鍵字" type="text" name="q" autocomplete="off" size="15">
+                        <input type="submit" style="background-color: #0066FF; color: white;" class="border-radius" name="sa" value="搜尋">
+                        <input type="hidden" name="http://203.64.102.234/kuas6678/home.html">
+                        <input type="hidden" name="http://203.64.102.234/kuas6678/home.html">
+                    </form>
+                </div>
+                <!--/#gamma-->
+            </div>
+            <!--/#content-->
+        </div>
+        <div id="footer">
+            <div id="footer-inner">
+				<address>Power by <a style="color: white; font-size: 13px; font-weight: bold; text-decoration:underline;" href="https://nodejs.org/en/" target="_blank">Node.js</a> WebServer<br />Copyright &copy; Ying Hao Chuang. All Rights Reserved.</address>
+                <!--/#footer-inner-->
+            </div>
+            <!--/#footer-->
+        </div>
+        <!--/#container-->
+    </div>
+</body>
+</html>

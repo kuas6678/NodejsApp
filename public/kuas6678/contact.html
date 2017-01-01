@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>contact</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="css/import.css" rel="stylesheet" />
+    <script src="js/gnav.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <link href="octicons/octicons.css" rel="stylesheet" />
+    <script src="Custom.js"></script>
+    <style type="text/css">
+        .auto-style1 {
+            line-height: 150%;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+
+        .auto-style2 {
+            font-weight: normal;
+            font-family: Arial;
+            font-size: small;
+        }
+
+        .box {
+            width: 398px;
+            background-color: #ffffff;
+            border: 2px solid blue;
+            padding: 10px;
+            font-size: 13.5px;
+        }
+
+        .bgcolor {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .QQ {
+            color: green;
+        }
+
+        .QQ2 {
+            color: blue;
+        }
+
+        .line {
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .selected {
+            font-weight: bold;
+            background-color: #AAAAAA;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .focus {
+            border: 1px solid #00FFFF;
+        }
+
+        .border-radius {
+            border-radius: 5px;
+        }
+
+        #accordion {
+            float: left;
+            width: 300px;
+            margin: 10px 0 10px 0px;
+        }
+
+        .catalog {
+            color: #fff;
+            background-color: #015287;
+            border-bottom: 1px solid #fff;
+        }
+
+            .catalog h4 {
+                margin: 0;
+                cursor: pointer;
+                text-indent: 5px;
+                font-size: 14px;
+                padding: 10px 0;
+            }
+
+        .active {
+            background-color: #555;
+        }
+
+        .item {
+            background-color: #A8D7E2;
+            margin: 0px 0 0px 0;
+            padding: 5px 5px 10px 5px;
+            list-style-type: none;
+            line-height: 18px;
+            font-size: 13px;
+        }
+
+            .item li {
+                display: block;
+                margin: 0;
+                padding: 1px 0px;
+            }
+
+                .item li a {
+                    color: #015287;
+                }
+    </style>
+
+    <script>
+        //jQuery Event Handlers
+        $(document).ready(function () {
+            //Use getJSON method to get JSON files
+            $.getJSON("information.txt", function (data) {
+                var html = '<ul>';
+                $.each(data, function (key, val) {
+                    html += '<li id="' + key + '">' + val.title + ':' + val.category + '</li>';
+                });
+                html += '</ul>';
+                $('#result').html(html);
+            });
+            // jQuery ajax() method
+            $("button").click(function () {
+                $.ajax({
+                    url: "demo_test.txt",
+                    error: function () {
+                        alert("載入錯誤!!!");
+                    }
+                , success: function (result) {
+                    $("#result").html(result);
+                }
+                });
+            });
+            $('input').addClass('line');
+            $('#BMWLAB h5').addClass('hidden');
+            $('#switcher').click(function () {
+                if ($(event.target).is('input')) {
+                    var className = event.target.id; //若為input元素，則取得樣式類別名稱
+                    $('#switcher input').removeClass('selected');
+                    $(event.target).addClass('selected');
+                    event.stopPropagation(); //停止將事件傳遞至DOM樹上一層元素，避免重複處理
+                }
+            });
+
+
+            // mouseenter & mouseleave
+            jQuery('.item li').mouseenter(function () {
+                $(this).addClass('bgcolor');
+            }).mouseleave(function () {
+                $(this).removeClass('bgcolor');
+            });
+
+            var isHidden = true;
+            $('#KUAS').click(function () {
+                if (isHidden) {
+                    $('#BMWLAB h5').removeClass('hidden');
+                    $('#BMWLAB h5').append('<h5 id="line" class="QQ2">—————————————</h5>');
+                    isHidden = false;
+                }
+                else {
+                    $("h5 #line").remove('.QQ2');
+                    $('#BMWLAB h5').addClass('hidden');
+                    isHidden = true;
+                }
+            });
+            // slide effects
+            $('#Slide').click(function () {
+                if ($('.KK').is(':hidden'))
+                    $('.KK').slideDown('200');
+                else
+                    $('.KK').slideUp('200');
+                return false;
+            });
+            // fadeIn & fadeOut effects
+            $('p.more').hide();
+            $('a.short').hide();
+            $('a.more').click(function () {
+                $('p.more').fadeIn('1500');
+                $(this).hide();
+                $('a.short').show();
+                return false;
+            });
+            $('#fadeInOut').click(function () {
+                $('p.more').fadeToggle('1500');
+                return false;
+            });
+            //change transparent
+            $("address").mouseenter(function () {
+                $(this).fadeTo("slow", Math.random());
+            }).mouseleave(function () {
+                $(this).fadeTo("slow", 1);
+            });
+            // focus & blur
+            $('#search').focus(function () {
+                $(this).addClass('focus');
+            }).blur(function () {
+                $(this).removeClass('focus');
+            });
+
+            $('#Default').bind('click', function () {
+                // Same as $('#Default').click(function(){ });
+                $('body').toggleClass('bgcolor');
+            });
+            $('#PP').click(function () {
+                $('#QQ').toggleClass('QQ');
+            });
+            $('#PP2').click(function () {
+                $('#QQ').toggleClass('QQ2');
+            });
+            $("#LJ").click(function () {
+                $('#QQ').hide("fast");
+            });
+            $("#Wiki").click(function () {
+                $('#QQ').show("normal").removeClass('QQ QQ2');
+            });
+            $('#span_date').click(function () {
+                var now = new Date();
+                var str_NowDate = (now.getFullYear()) + "/" + (now.getMonth() + 1) + "/" + now.getDate();
+                $("#span_date").html(str_NowDate);
+            });
+
+        });
+        //W3Schools timing_clock example
+        function startTime() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML = "&nbsp;&nbsp;&nbsp;現在時間:&nbsp;" +
+            h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.item').not(':first').hide();
+            $('.item:first').show();
+            $('.catalog:first').addClass('active');
+            $('.catalog').mouseenter(function () {
+                $('.item:visible').slideUp('normal')
+                  .prev().removeClass('active');
+                $(this).addClass('active').next().slideDown('normal');
+            });
+        });
+    </script>
+
+
+</head>
+<body onload="startTime()">
+    <div id="container">
+        <div id="header">
+            <div id="header-inner">
+                <h1 id="siteid">
+                    <a href="./home.html" name="pagetop" id="pagetop">
+                        <img src="images/cloud.jpg" alt="Ying Hao Chuang" width="780" height="108" />
+                    </a>
+                </h1>
+                <ul id="global-nav">
+                    <li>
+                        <a href="./home.html">
+                            <img src="images/gnav_home.gif" alt="Home" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./products.html">
+                            <img src="images/gnav_products.gif" alt="Products" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./gallery.html">
+                            <img src="images/gnav_gallery.gif" alt="Gallery" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./contact.html">
+                            <img src="images/gnav_contact.gif" alt="Contact" width="148" height="42" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./about.html">
+                            <img src="images/gnav_about.gif" alt="About" width="148" height="42" />
+                        </a>
+                    </li>
+                </ul>
+                <!--/#header-inner-->
+            </div>
+            <!--/#header-->
+        </div>
+
+        <div id="content">
+            <div id="alpha">
+                <button>Get External Content</button>
+                <div id="result" class="box"></div>
+
+                <!--/#alpha-->
+                <div id="accordion">
+                    <div class="catalog">
+                        <h4>Programming Language</h4>
+                    </div>
+                    <ul class="item">
+                        <li><a href='https://java.com/zh_TW/' target="_blank">Java</a></li>
+                        <li><a href='https://msdn.microsoft.com/library/kx37x362%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396' target="_blank">Visual C#</a></li>
+                        <li><a href='https://msdn.microsoft.com/zh-tw/library/2x7h1hfk(v=vs.110).aspx' target="_blank">Visual Basic</a></li>
+                        <li><a href='https://msdn.microsoft.com/zh-tw/library/60k1461a.aspx' target="_blank">C++</a></li>
+                        <li><a href='https://developer.mozilla.org/zh-TW/docs/Web/JavaScript' target="_blank">JavaScript</a></li>
+                        <li><a href='https://msdn.microsoft.com/zh-tw/library/bb510741(v=sql.120).aspx' target="_blank">T-SQL</a></li>
+                    </ul>
+                    <div class="catalog">
+                        <h4>Web Design</h4>
+                    </div>
+                    <ul class="item">
+                        <li><a href='http://www.asp.net/' target="_blank">ASP.NET</a></li>
+                        <li><a href='https://developer.mozilla.org/zh-TW/docs/Web/HTML' target="_blank">HTML</a></li>
+                        <li><a href='http://www.w3schools.com/css/' target="_blank">CSS</a></li>
+                        <li><a href='https://jquery.com/' target="_blank">jQuery</a></li>
+                        <li><a href='https://nodejs.org/en/' target="_blank">Node.js</a></li>
+                        <li><a href='http://getbootstrap.com/' target="_blank">Bootstrap</a></li>
+                        <li><a href='http://www.json.org/' target="_blank">JSON</a></li>
+                        <li><a href='http://www.w3schools.com/xml/' target="_blank">XML</a></li>
+                        <li><a href='https://developer.mozilla.org/zh-TW/docs/AJAX' target="_blank">Ajax</a></li>
+                    </ul>
+                    <div class="catalog">
+                        <h4>Database System</h4>
+                    </div>
+                    <ul class="item">
+                        <li><a href='https://www.microsoft.com/zh-tw/server-cloud/products/sql-server/' target="_blank">SQL Server</a></li>
+                        <li><a href='http://www.mysql.com/' target="_blank">MySQL</a></li>
+                        <li><a href='https://products.office.com/zh-tw/access' target="_blank">Access</a></li>
+                        <li><a href='https://www.mongodb.org/' target="_blank">MongoDB</a></li>
+                    </ul>
+                    <div class="catalog">
+                        <h4>Development Tools</h4>
+                    </div>
+                    <ul class="item">
+                        <li><a href='https://www.visualstudio.com/' target="_blank">Visual Studio</a></li>
+                        <li><a href='https://eclipse.org/downloads/' target="_blank">Eclipse</a></li>
+                        <li><a href='https://msdn.microsoft.com/zh-tw/library/ms174173(v=sql.120).aspx' target="_blank">SQL Server Management Studio</a></li>
+                        <li><a href='https://code.visualstudio.com/' target="_blank">Visual Studio Code</a></li>
+                        <li><a href='https://notepad-plus-plus.org/' target="_blank">Notepad++</a></li>
+                        <li><a href='https://www.arduino.cc/en/Main/Software' target="_blank">Arduino IDE</a></li>
+                        <li><a href='https://git-scm.com/' target="_blank">Git Bash</a></li>
+                    </ul>
+                    <div class="catalog">
+                        <h4>Others</h4>
+                    </div>
+                    <ul class="item">
+                        <li><a href='https://github.com/' target="_blank">Github</a></li>
+                        <li><a href='https://www.android.com/intl/zh-TW_tw/' target="_blank">Android</a></li>
+                        <li><a href='https://www.arduino.cc/' target="_blank">Arduino</a></li>
+                        <li><a href='https://www.raspberrypi.org/' target="_blank">Raspberry Pi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div id="beta">
+                <div class="widget" id="recent-entries">
+                    <br />
+                    <div>
+                        <span id="Slide" class="octicon octicon-git-compare"><b>&nbsp;Related Link</b></span>
+                    </div>
+                    <br />
+                    <ul class="KK">
+                        <li>
+                            <a href="http://www.kuas.edu.tw/bin/home.php">
+                                <img src="images/KUAS彩色.bmp" alt="" width="60" height="60" />
+                                National Kaohsiung University of Applied Sciences <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://github.com/kuas6678">
+                                <img src="images/entrypct_05.png" alt="" width="60" height="60" />
+                                Explore GitHub <span class="published">06 Aug 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://203.64.102.131/bmwlab">
+                                <img src="images/entrypct_04.png" alt="" width="60" height="60" />
+                                Senior Care System <span class="published">10 Oct 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=100000654225811">
+                                <img src="images/entrypct_03.png" alt="" width="60" height="60" />
+                                Facebook <span class="published">14 Jul 2009</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.w3schools.com/">
+                                <img src="images/entrypct_02.jpg" alt="" width="60" height="60" />
+                                W3Schools Online <span class="published">07 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://msdn.microsoft.com/zh-tw/vstudio/aa718325.aspx">
+                                <img src="images/entrypct_01.png" alt="" width="60" height="60" />
+                                Visual Studio Msdn <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://social.msdn.microsoft.com/Forums/zh-TW/home">
+                                <img src="images/msdn_logo.png" alt="" width="60" height="60" />
+                                Social Msdn <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://ieeexplore.ieee.org/Xplore/home.jsp">
+                                <img src="images/Ieee-emblem.jpg" alt="" width="50" height="60" />
+                                IEEE Xplore Digital Library <span class="published">05 Jul 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://nodejs.org/en/">
+                                <img src="images/node.png" alt="" width="60" height="60" />
+                                Node.js <span class="published">06 Oct 2015</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.sharecourse.net/sharecourse/general/home/">
+                                <img src="images/mq1.png" alt="" width="60" height="60" />
+                                ShareCourse <span class="published">06 Oct 2015</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/#beta-->
+            </div>
+
+            <div id="gamma">
+                <div class="widget" id="calendar">
+                    <img src="images/Hao.jpg" alt="Smiley face" height="150" width="160">
+                    <p style="text-align: center;" class="more">莊英澔</p>
+                    <div id="fadeInOut" align="center"><b>Ying Hao Chuang</b></div>
+                    <div id="BMWLAB">
+                        <br />
+                        <h5><a href="./kuaslocation.html" target="_blank">School: KUAS</a></h5>
+                        <h5>Email: kuas6678@gmail.com</h5>
+                        <h5>
+                            Skill: <br />
+                            <p style="text-align: center;">C、C++、C#、Java、HTML5、ASP.NET、MS SQL、JavaScript、CSS、Bootstrap、JSON、Ajax、jQuery、GitHub、Arduino</p>
+                        </h5>
+                    </div>
+                    <h3><span id="span_date">Oct 2015</span>&nbsp;&nbsp;&nbsp;<span id="KUAS" class="mega-octicon octicon-home"></span></h3>
+                    <div style=" font-size: 14px;  font-weight: bold;" id="txt"></div>
+                    <ul>
+                        <li><a href="#">01</a></li>
+                        <li>02</li>
+                        <li>03</li>
+                        <li>04</li>
+                        <li class="sun"><a href="#">05</a></li>
+                        <li>06</li>
+                        <li><a href="#">07</a></li>
+                        <li>08</li>
+                        <li>09</li>
+                        <li>10</li>
+                        <li>11</li>
+                        <li class="sun">12</li>
+                        <li>13</li>
+                        <li><a href="#">14</a></li>
+                        <li>15</li>
+                        <li>16</li>
+                        <li><a href="#">17</a></li>
+                        <li>18</li>
+                        <li class="sun">19</li>
+                        <li class="sun">20</li>
+                        <li>21</li>
+                        <li><a href="#">22</a></li>
+                        <li>23</li>
+                        <li>24</li>
+                        <li>25</li>
+                        <li class="sun">26</li>
+                        <li>27</li>
+                        <li>28</li>
+                        <li>29</li>
+                        <li>30</li>
+                        <li>31</li>
+                    </ul>
+                    <br />
+                    <form method="get" action="http://www.google.com.tw/custom" target="_blank">
+                        <span class="octicon octicon-search">站內搜尋:</span><br />
+                        <input id="search" style="width: 94px; height: 18px;" placeholder="請輸入關鍵字" type="text" name="q" autocomplete="off" size="15">
+                        <input type="submit" style="background-color: #0066FF; color: white;" class="border-radius" name="sa" value="搜尋">
+                        <input type="hidden" name="http://203.64.102.234/kuas6678/home.html">
+                        <input type="hidden" name="http://203.64.102.234/kuas6678/home.html">
+                    </form>
+                </div>
+                <!--/#gamma-->
+            </div>
+            <!--/#content-->
+        </div>
+        <div id="footer">
+            <div id="footer-inner">
+				<address>Power by <a style="color: white; font-size: 13px; font-weight: bold; text-decoration:underline;" href="https://nodejs.org/en/" target="_blank">Node.js</a> WebServer<br />Copyright &copy; Ying Hao Chuang. All Rights Reserved.</address>
+                <!--/#footer-inner-->
+            </div>
+            <!--/#footer-->
+        </div>
+        <!--/#container-->
+    </div>
+</body>
+</html>

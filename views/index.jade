@@ -1,0 +1,37 @@
+doctype html
+html
+	head
+		title= 'Blog System'
+		
+	body
+		div(style='float:left;margin:10px;')
+			a(href='/' style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Home
+
+		div(style='float:right; margin:10px;')
+			if (username && authenticated)
+				a(href='/signout', style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Sign Out
+				a(href='/add_article', style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Add Article
+				a(href='/profile', style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Profile
+				span #{username}
+			else
+				a(href='/signin', style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Log In
+				a(href='/register', style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Register
+				a(href='/forget', style='text-decoration:none; font-size: 20px; margin:10px; color: #FFFFFF; background-color: #00AA00; border-style: solid; border-color: #00AA00; border-width: 3px; border-radius: 6px;') Forgot password
+	
+	div(style='margin: -8px;  padding:50px; width: 100%; background-color: #EEFFBB;')
+		h1= title 
+	marquee(style='margin: 8px;' scrollamount='5')
+	for article in blogs
+		div
+			div(style='float:left;margin-top:10px;')= article.Username
+			div(style='float:right;margin-top:10px;')= article.CreateDate
+			br
+			div(style='clear:both')= article.Article
+				a(href='/message/'+article.id, style='float:right;margin-top:105px;margin-right:20px;') Leave a message
+			hr(style='margin-top:110px;')
+	div(style='padding:10px; font-weight: bold; margin:-8px;width: 100%; background-color: #708090;' align='center')
+		address(style='text-align: center;') Power by Node.js
+		img(src='/images/nodejs.png' style='hight: 60px; width: 120px; float: center;') 
+	div(style='padding:10px; margin:-8px;width: 100%; background-color: #C0C0C0;' align='center')  
+		img(src='/images/BMWlab_logo.png' style='hight: 100px; width: 100px; float: center;') 
+		marquee(style='text-align: center;' scrollamount='1' direction='up' height='20px') Created by KUAS BMWLab 407. 

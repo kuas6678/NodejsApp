@@ -1,0 +1,10 @@
+@charset "UTF-8";
+/* [javascript/Ajax Samples]
+ * Summary: import CSS files
+ * Modified: 2008-07-04
+ */
+
+@import "reset.css";
+@import "base.css";
+
+

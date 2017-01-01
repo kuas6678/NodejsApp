@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.imgLeft {
+	float: left;
+	margin: 0 5px 5px 0;
+}
+Q2 {
+	margin: 0;
+	color: Blue;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+p.price {
+	text-align: right;
+	font-size: 80%;
+	color: green;
+	margin: 0;
+}
+p.memo {
+	margin-top: 10px;
+	line-height: 16px;
+	font-size: 12.5px;
+	text-justify: auto;
+}
+
+
+#ft {
+	background-color: #AAFFEE;
+	color: #AAFFEE;
+	padding: 13px;
+	font-size: 50%;
+}
+#ft address {
+	font-style: normal;
+}
+
+/* clearfix ---------------------------------------- */
+.clearfix:after{
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+
+.clearfix{
+    display:inline-block;
+    min-height:1%;  /* for IE 7*/
+}

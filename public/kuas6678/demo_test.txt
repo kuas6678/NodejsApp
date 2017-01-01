@@ -1,0 +1,5 @@
+Hello~ Welcome to Ying Hao Chuang Website.<br />
+Are you want to know more about me ?<br />
+<a href="https://github.com/kuas6678" target="_blank">https://github.com/kuas6678</a><br/>
+<a href="https://www.facebook.com/profile.php?id=100000654225811" target="_blank">https://www.facebook.com/profile.php?id=100000654225811</a>
+<a href="webdesign.pdf"> PHP ASP.NET JSP ROR Compare</a>
